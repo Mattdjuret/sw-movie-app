@@ -10,14 +10,15 @@ class App extends Component {
     super(props);
     this.state={
       isLoading:false,
+      data:[],
       films:[],
-      sortBy:'episode',
+      sortBy:'episode_id',
       searchBy:'',
-      selectedMovie2: null,
-      selectedMovie: {id:2,title:'title',opening:'opening',director:'director'}
+      selectedMovie: null
     }
     this.handleSort = this.handleSort.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
+    this.handleSelectMovie = this.handleSelectMovie.bind(this);
 }
 componentDidMount() {
   this.setState({ isLoading: true });
@@ -25,8 +26,9 @@ componentDidMount() {
     .then(response => response.json())
     .then(data => this.setState({ films: data.map(x=>x.fields), isLoading: false }));
 }
-handleSort(sortType){
-  console.log(`selected ${sortType}`);
+handleSort(sortBy){
+  console.log(`selected ${sortBy}`);
+  this.setState({sortBy})
 }
 handleSearch(event){
   console.log('search text', event.target.value);
@@ -37,17 +39,30 @@ handleSearch(event){
     console.log("search text async callback:", this.state.searchBy);
   });
 }
+handleSelectMovie(event, episodeId){  
+  console.log('movie selected', event.target,episodeId);
+
+  const filtered = this.state.films.filter(key => key.episode_id===episodeId);
+  if(filtered.length===1)
+    this.setState({selectedMovie:filtered[0]})
+}
   render(){
-    const { films } = this.state;
+    const { films,selectedMovie,searchBy,sortBy,isLoading } = this.state;
+    if (isLoading) {
+      return (
+        <div className="App">
+      <p>Loading ...</p>
+      </div>);
+    }
     return(
     <div className="App">
-      <Topbar handleSort={this.handleSort} handleSearch={this.handleSearch} searchBy={this.state.searchBy} />
+      <Topbar handleSort={this.handleSort} handleSearch={this.handleSearch} searchBy={searchBy} />
       <Container className="App-main" fluid={true}>
         <Row>
         <Col xs="6" lg="5">
-        <MovieList films={films} />
+        <MovieList films={films} searchBy={searchBy} sortBy={sortBy} selectedMovie={selectedMovie} handleSelectMovie={this.handleSelectMovie} />
         </Col>
-        <Col xs="6" lg="7"><MovieItem item={{...this.state.selectedMovie}} /></Col>
+        <Col xs="6" lg="7"><MovieItem item={{...selectedMovie}} /></Col>
         </Row>
       </Container>
     </div>

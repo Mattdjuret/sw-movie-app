@@ -20,8 +20,8 @@ render(){
   <Navbar.Collapse id="basic-navbar-nav">
     <Nav className="mr-auto" activeKey="episode" onSelect={s => this.props.handleSort(s)}>
       <NavDropdown title="Sort by" id="basic-nav-dropdown">
-        <NavDropdown.Item eventKey ="episode">Episode</NavDropdown.Item>
-        <NavDropdown.Item eventKey ="year">Year</NavDropdown.Item>
+        <NavDropdown.Item eventKey ="episode_id">Episode</NavDropdown.Item>
+        <NavDropdown.Item eventKey ="release_date">Year</NavDropdown.Item>
       </NavDropdown>
     </Nav>
     <Form inline>

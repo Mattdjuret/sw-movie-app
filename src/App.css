@@ -1,6 +1,8 @@
+body{
+  background-color: #282c34;
+}
 .App {
-  text-align: left;
-  
+  text-align: left;  
   background-color: #282c34;
 }
 .App-main {
@@ -31,4 +33,14 @@
 }
 .movie-list-item > .release-date{
   font-size: .7em;
+}
+.noMovieSelected{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.noMovieSelected > .logo {
+  height: 20vmin;
+  pointer-events: none;
 }
