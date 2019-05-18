@@ -6,7 +6,7 @@ export default class Topbar extends Component{
 render(){
     return (
         <Navbar bg="dark" variant="dark" className="App-navbar justify-content-between">
-    <Navbar.Brand href="#">
+    <Navbar.Brand className="d-none d-sm-block" href="#">
       <img
         alt=""
         src={logo}

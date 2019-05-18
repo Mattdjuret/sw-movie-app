@@ -53,10 +53,10 @@ handleSelectMovie(event, episodeId){
       <Topbar handleSort={this.handleSort} handleSearch={this.handleSearch} searchBy={searchBy} />
       <Container className="App-main" fluid={true}>
         <Row>
-        <Col xs="6" lg="5">
+        <Col md="6" lg="5" className="mb-5">
         <MovieList films={films} searchBy={searchBy} sortBy={sortBy} selectedMovie={selectedMovie} handleSelectMovie={this.handleSelectMovie} />
         </Col>
-        <Col xs="6" lg="7"><MovieItem item={{...selectedMovie}} /></Col>
+        <Col md="6" lg="7"><MovieItem item={{...selectedMovie}} /></Col>
         </Row>
       </Container>
     </div>

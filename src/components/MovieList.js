@@ -13,8 +13,8 @@ export default class MovieList extends Component{
           obj[key] = film[key];
           return obj;
         }, {}));
-        if(lowercasedFilter !== "" && filteredData.length>0)
 
+        if(lowercasedFilter !== "" && filteredData.length>0)
         //filter list according to searchBy prop
         filteredData = filteredData.filter(item => {
             return Object.keys(item).some(key =>
@@ -24,6 +24,9 @@ export default class MovieList extends Component{
 
         //Sort list according to sortBy prop
         filteredData = filteredData.sort((a, b) => (a[sortBy] > b[sortBy]) ? 1 : -1)
+
+        if(filteredData.length===0 && lowercasedFilter !== "")
+          return <p>No results found for "{searchBy}"</p>
         return (
             <ListGroup className="movie-list">
                 {filteredData.map(film =>
