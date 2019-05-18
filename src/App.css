@@ -34,6 +34,10 @@ body{
 .movie-list-item > .release-date{
   font-size: .7em;
 }
+.selected-item-director{
+  font-size: .8em;
+  color:#aaa
+}
 .noMovieSelected{
   min-height: 100vh;
   display: flex;
