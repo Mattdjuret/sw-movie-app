@@ -27,21 +27,15 @@ componentDidMount() {
     .then(data => this.setState({ films: data.map(x=>x.fields), isLoading: false }));
 }
 handleSort(sortBy){
-  console.log(`selected ${sortBy}`);
   this.setState({sortBy})
 }
 handleSearch(event){
-  console.log('search text', event.target.value);
   
   this.setState({
     searchBy: event.target.value
-  }, () => {
-    console.log("search text async callback:", this.state.searchBy);
   });
 }
-handleSelectMovie(event, episodeId){  
-  console.log('movie selected', event.target,episodeId);
-
+handleSelectMovie(event, episodeId){ 
   const filtered = this.state.films.filter(key => key.episode_id===episodeId);
   if(filtered.length===1)
     this.setState({selectedMovie:filtered[0]})
